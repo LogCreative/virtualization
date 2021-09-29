@@ -3,6 +3,7 @@
 sudo apt-get install git
 git clone --recurse-submodules https://git.sjtu.edu.cn/sjtug/qemu.git
 cd qemu
+git checkout --recurse-submodules v5.2.0
 mkdir build
 cd build
 sudo apt-get install glib2.0-dev libglib2.0-dev libfdt-dev libpixman-1-dev zlib1g-dev

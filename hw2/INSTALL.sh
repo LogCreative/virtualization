@@ -1,8 +1,8 @@
 #!/bin/bash
 
 sudo apt-get install git
-git clone --recurse-submodules https://git.sjtu.edu.cn/sjtug/qemu.git
-cd qemu
+git clone --recurse-submodules https://git.sjtu.edu.cn/sjtug/qemu.git /home/
+cd /home/qemu
 git checkout --recurse-submodules v5.2.0
 mkdir build
 cd build
@@ -19,5 +19,5 @@ sudo apt-get install libnfs-dev libiscsi-dev
 sudo apt-get install ninja-build
 sudo apt-get install libsdl1.2-dev
 ../configure --enable-kvm --enable-debug --enable-vnc --enable-werror --target-list="x86_64-softmmu"
-make -j4
+make -j8
 make install

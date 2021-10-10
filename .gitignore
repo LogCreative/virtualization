@@ -10,3 +10,7 @@ lecture/
 cache/
 *.auxlock
 *.zip
+*.bak
+*.sav
+*.bbl
+*.blg

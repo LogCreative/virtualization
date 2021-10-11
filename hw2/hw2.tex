@@ -65,11 +65,11 @@
         \begin{minipage}{0.48\textwidth}
             \centering
             \includegraphics[height=3.1cm]{compile}
-            \caption{QEMU 编译}\label{fig:compile}
+            \caption{远程 QEMU 编译}\label{fig:compile}
         \end{minipage}
         \begin{minipage}{0.48\textwidth}
             \includegraphics[width=\linewidth]{install}
-            \caption{QEMU 安装}\label{fig:install}
+            \caption{远程 QEMU 安装}\label{fig:install}
         \end{minipage}
     \end{figure}
 
@@ -109,17 +109,17 @@ bcdedit /set hypervisorlaunchtype off
         \begin{minipage}{0.48\textwidth}
             \centering
             \includegraphics[width=0.9\linewidth]{compilelocal}
-            \caption{QEMU 编译}\label{fig:compilelocal}
+            \caption{本地 QEMU 编译}\label{fig:compilelocal}
         \end{minipage}
         \begin{minipage}{0.48\textwidth}
             \includegraphics[width=\linewidth]{installlocal}
-            \caption{QEMU 安装}\label{fig:installlocal}
+            \caption{本地 QEMU 安装}\label{fig:installlocal}
         \end{minipage}
     \end{figure}
 
     \section{创建虚拟机}
     
-
+    \code[language=bash]{createvm.sh}
 
     \bibliography{ref}
 \end{document}

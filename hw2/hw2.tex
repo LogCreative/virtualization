@@ -3,6 +3,7 @@
 \begin{document}
     \title{虚拟机网络性能测试}
     \maketitle
+    \tableofcontents
     \section*{要求}
     Virtualized and bare metal network performance test.
     \begin{itemize}
@@ -81,9 +82,44 @@
     % git submodule deinit --all -f
     % 来解除初始化
 
-    \section{创建虚拟机}
+     由于云主机不支持硬件虚拟化技术，将首先在本地虚拟机进行实验。VMWare Workstation 16.0 虽然支持与 Hyper-V 并存，但是如果想要使用硬件虚拟化技术，还是需要关闭 Hyper-V 功能才能使用。关闭 Windows 的 Hyper-V 功能、并且在管理员模式的 PowerShell 中彻底关闭之
+\begin{lstlisting}[style=commandshell,language=bash]
+bcdedit /set hypervisorlaunchtype off
+\end{lstlisting}
+    重启后，可以通过打开 \textsf{虚拟机设置} 里的 \textsf{虚拟化 Intel VT-x/EPT 或 AMD-V/RVI} 以启用之，如图 \ref{fig:openvt} 所示。该项检查是通过安装 \verb"cpu-checker"，使用 \verb"kvm-ok" 进行检查，如图 \ref{fig:kvm} 所示。
 
-    由于云主机不支持硬件虚拟化技术。
+    \begin{figure}[h]
+        \centering
+        \begin{minipage}{0.48\textwidth}
+            \centering
+            \includegraphics[width=0.9\linewidth]{openvt}
+            \caption{打开 Intel VT-x}\label{fig:openvt}
+        \end{minipage}
+        \begin{minipage}{0.48\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{kvm}
+            \caption{检测 KVM 可用性}\label{fig:kvm}
+        \end{minipage}
+    \end{figure}
+
+    之后在本地的虚拟机上再次编译、安装，如图 \ref{fig:compilelocal} 和图 \ref{fig:installlocal} 所示。
+
+    \begin{figure}[h]
+        \centering
+        \begin{minipage}{0.48\textwidth}
+            \centering
+            \includegraphics[width=0.9\linewidth]{compilelocal}
+            \caption{QEMU 编译}\label{fig:compilelocal}
+        \end{minipage}
+        \begin{minipage}{0.48\textwidth}
+            \includegraphics[width=\linewidth]{installlocal}
+            \caption{QEMU 安装}\label{fig:installlocal}
+        \end{minipage}
+    \end{figure}
+
+    \section{创建虚拟机}
+    
+
 
     \bibliography{ref}
 \end{document}

@@ -18,6 +18,7 @@ sudo apt-get install valgrind xfslibs-dev
 sudo apt-get install libnfs-dev libiscsi-dev
 sudo apt-get install ninja-build
 sudo apt-get install libsdl1.2-dev
+sudo apt-get install cpu-checker
 ../configure --enable-kvm --enable-debug --enable-vnc --enable-werror --target-list="x86_64-softmmu"
 make -j8
 make install

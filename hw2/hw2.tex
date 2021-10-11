@@ -82,11 +82,11 @@
     % git submodule deinit --all -f
     % 来解除初始化
 
-     由于云主机不支持硬件虚拟化技术，将首先在本地虚拟机进行实验。VMWare Workstation 16.0 虽然支持与 Hyper-V 并存，但是如果想要使用硬件虚拟化技术，还是需要关闭 Hyper-V 功能才能使用。关闭 Windows 的 Hyper-V 功能、并且在管理员模式的 PowerShell 中彻底关闭之
+    由于交大云主机不支持硬件虚拟化技术（一般云主机也都不支持），将首先在本地虚拟机进行实验。VMWare Workstation 16.0 虽然支持与 Hyper-V 并存，但是如果想要使用硬件虚拟化技术，还是需要关闭 Hyper-V 功能才能使用。关闭 Windows 的 Hyper-V 功能、并且在管理员模式的 PowerShell 中彻底关闭之
 \begin{lstlisting}[style=commandshell,language=bash]
 bcdedit /set hypervisorlaunchtype off
 \end{lstlisting}
-    重启后，可以通过打开 \textsf{虚拟机设置} 里的 \textsf{虚拟化 Intel VT-x/EPT 或 AMD-V/RVI} 以启用之，如图 \ref{fig:openvt} 所示。该项检查是通过安装 \verb"cpu-checker"，使用 \verb"kvm-ok" 进行检查，如图 \ref{fig:kvm} 所示。
+    （如果需要使用 Hyper-V 需要将上一行变为 auto）重启后，可以通过打开 \textsf{虚拟机设置} 里的 \textsf{虚拟化 Intel VT-x/EPT 或 AMD-V/RVI} 以启用之，如图 \ref{fig:openvt} 所示。该项检查是通过安装 \verb"cpu-checker"，使用 \verb"kvm-ok" 进行检查，如图 \ref{fig:kvm} 所示。
 
     \begin{figure}[h]
         \centering
@@ -119,7 +119,18 @@ bcdedit /set hypervisorlaunchtype off
 
     \section{创建虚拟机}
     
+    创建 TAP 网桥\cite{tap}
+
     \code[language=bash]{createvm.sh}
+
+    \code[language=bash]{startvm.sh}
+
+    \section{测试网卡性能}
+
+    \code[]{test.sh}
+
+    % e1000         302.60
+    % virto-net     699.00
 
     \bibliography{ref}
 \end{document}

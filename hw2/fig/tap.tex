@@ -1,0 +1,13 @@
+\begin{tikzpicture}
+
+\draw  (-1.5,1) rectangle (4.5,0);
+\node[font=\ttfamily] (v2) at (1.5,0.5) {br0};
+\node[font=\ttfamily,circle,draw] (v1) at (1.5,2.5) {ens33};
+
+\node[font=\ttfamily,circle,draw] (v3) at (-0.5,-1.5) {tap1};
+
+\node[font=\ttfamily,circle,draw] (v4) at (3.5,-1.5) {tap2};
+\draw (v3) -- (-0.5,0);
+\draw (v4) -- (3.5,0);
+\draw (v1) -- (1.5,1);
+\end{tikzpicture}

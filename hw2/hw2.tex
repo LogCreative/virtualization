@@ -38,21 +38,28 @@
     \end{figure}
 
     % 放弃 VNC %%%%%%%
-    % 通过下面的脚本在服务器上安装 VNC Server（顺带安装了 VNC Connect），并配置之\cite{vncconnect}。如图 \ref{fig:openport} 所示，在安全组设置里放行 5901 端口以启用 VNC 连接。
+    通过下面的脚本在服务器上安装 VNC Server，并配置之\cite{vncconnect}。如图 \ref{fig:openport} 所示，在安全组设置里放行 5901 端口以启用 VNC 连接。之后在 Windows 上安装 VNC Viewer 以连接服务器，地址设置为 IP:1，如图 \ref{fig:vnc} 所示。
 
-    % % su logcreative 切换用户
-    % % 还需要设置用户组
+    % su logcreative 切换用户
+    % 还需要设置用户组
 
-    % \code[language=bash]{vnc.sh}
+    % 密码被截断为前 8 位。
 
-    % \begin{figure}[H]
-    %     \centering
-    %     \begin{minipage}{0.5\textwidth}
-    %         \centering
-    %         \includegraphics[width=\linewidth]{openport}
-    %         \caption{放行 5901 端口}\label{fig:openport}
-    %     \end{minipage}
-    % \end{figure}
+    \code[language=bash]{vnc.sh}
+
+    \begin{figure}[H]
+        \centering
+        \begin{minipage}{0.48\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{openport}
+            \caption{放行 5901 端口}\label{fig:openport}
+        \end{minipage}
+        \begin{minipage}{0.48\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{vnc}
+            \caption{使用 VNC 连接服务器}\label{fig:vnc}
+        \end{minipage}
+    \end{figure}
 
     \section{编译 QEMU}
     采用 QEMU 5.2.0 (Dec 8th 2020)。
@@ -82,7 +89,7 @@
     % git submodule deinit --all -f
     % 来解除初始化
 
-    由于交大云主机不支持硬件虚拟化技术（一般云主机也都不支持），将首先在本地虚拟机进行实验。VMWare Workstation 16.0 虽然支持与 Hyper-V 并存，但是如果想要使用硬件虚拟化技术，还是需要关闭 Hyper-V 功能才能使用。关闭 Windows 的 Hyper-V 功能、并且在管理员模式的 PowerShell 中彻底关闭之
+    \textbf{由于交大云主机不支持硬件虚拟化技术（一般云主机也都不支持）}，将首先在本地虚拟机进行实验。VMWare Workstation 16.0 虽然支持与 Hyper-V 并存，但是如果想要使用硬件虚拟化技术，还是需要关闭 Hyper-V 功能才能使用。关闭 Windows 的 Hyper-V 功能、并且在管理员模式的 PowerShell 中彻底关闭之
 \begin{lstlisting}[style=commandshell,language=bash]
 bcdedit /set hypervisorlaunchtype off
 \end{lstlisting}
@@ -119,14 +126,38 @@ bcdedit /set hypervisorlaunchtype off
 
     \section{创建虚拟机}
     
-    创建 TAP 网桥\cite{tap}
+    安装完成 QEMU 后，就可以创建虚拟机了。先为一个虚拟机分配 10G 空间，然后再通过光盘安装系统，安装完成后可以复制一份拷贝。
+
+    \begin{figure}[h]
+        \centering
+        \begin{minipage}{0.48\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{installvm}
+            \caption{安装虚拟机}\label{fig:installvm}
+        \end{minipage}
+        \begin{minipage}{0.48\textwidth}
+            \centering
+            \input{fig/tap.tex}
+            \caption{TAP 模式的网络结构}\label{fig:tapnet}
+        \end{minipage}
+    \end{figure}
 
     \code[language=bash]{createvm.sh}
+
+    创建 TAP 网桥\cite{tap}，如图 \ref{fig:tapnet} 所示，并且将两个虚拟机以不同的网卡模式（e1000 和 virto-net）启动，如图 \ref{fig:twovm} 所示。
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\linewidth]{twovm}
+        \caption{启动两个虚拟机}\label{fig:twovm}
+    \end{figure}
 
     \code[language=bash]{startvm.sh}
 
     \section{测试网卡性能}
 
+    为了测试的公平性，每次只启动一个虚拟机进行网卡性能测试。
+    
     \code[]{test.sh}
 
     % e1000         302.60

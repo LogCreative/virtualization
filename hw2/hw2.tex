@@ -156,12 +156,35 @@ bcdedit /set hypervisorlaunchtype off
 
     \section{测试网卡性能}
 
-    为了测试的公平性，每次只启动一个虚拟机进行网卡性能测试。
+    为了测试的公平性，每次只启动一个虚拟机进行网卡性能测试。图中可见 virto-net 的吞吐量确实要比 e1000 高很多。
     
-    \code[]{test.sh}
+    \code[language=bash]{test.sh}
 
-    % e1000         302.60
-    % virto-net     699.00
+    \begin{minipage}{0.48\textwidth}
+        \begin{figure}[H]
+            \centering
+            \begin{tikzpicture}
+                \begin{axis}[width=0.9\linewidth,ymin=0,xlabel={type},
+                ylabel={throughput (Mbps)},
+                symbolic x coords={e1000,virto-net}, xtick=data,
+                ybar,]
+                \addplot+ [] table[x=Type,y=Throughput(Mbps),] {fig/localtest.dat};
+                \end{axis}
+            \end{tikzpicture}
+            \caption{本地网卡测试结果}\label{fig:localtest}
+        \end{figure}
+    \end{minipage}\hfil
+    \begin{minipage}{0.35\textwidth}
+        \begin{table}[H]
+            \caption{测试数据}\label{tab:localtest}
+            \pgfplotstabletypeset[columns/Type/.style={string type}]{fig/localtest.dat}
+        \end{table}
+    \end{minipage}\par
+
+    \vspace*{1em}
+
+    在服务器上测试，因为没有 KVM 所以响应速度很慢，两个小时内没有用 QEMU 安装完虚拟机，遂放弃！
+        
 
     \bibliography{ref}
 \end{document}

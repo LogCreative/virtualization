@@ -1,0 +1,1 @@
+sysbench memory --memory-block-size=2M --memory-total-size=2G run

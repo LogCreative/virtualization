@@ -17,7 +17,25 @@
 
     \section{编译安装 DPDK}
 
-    按照官方文档\cite{dpdk}安装 DPDK，
+    按照官方文档\cite{dpdk}编译 DPDK，如图 \ref{fig:meson} 和 \ref{fig:ninja} 所示。
+
+    \code[language=bash]{INSTALL.sh}
+
+    \begin{figure}[H]
+        \centering
+        \begin{minipage}{0.48\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{meson}
+            \caption{meson 配置}\label{fig:meson}
+        \end{minipage}
+        \begin{minipage}{0.48\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{ninja}
+            \caption{ninja 编译}\label{fig:ninja}
+        \end{minipage}
+    \end{figure}
+
+    之后对该虚拟机进行克隆，得到另一个已经安装 DPDK 的虚拟机。
 
     \bibliography{ref}
 

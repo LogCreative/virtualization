@@ -11,6 +11,7 @@ apt install python3-pip python3-pyelftools
 pip3 install meson
 
 # reboot if necessary
+# do not build examples!
 
 meson build
 ninja -C build

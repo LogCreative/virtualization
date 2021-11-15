@@ -17,7 +17,7 @@
 
     \section{编译安装 DPDK}
 
-    按照官方文档\cite{dpdk}编译 DPDK，如图 \ref{fig:meson} 和 \ref{fig:ninja} 所示。
+    按照官方文档\cite{dpdk}编译 DPDK，如图 \ref{fig:meson} 、\ref{fig:ninja}、 \ref{fig:ninjainstall} 所示。
 
     \code[language=bash]{INSTALL.sh}
 
@@ -35,7 +35,45 @@
         \end{minipage}
     \end{figure}
 
-    之后对该虚拟机进行克隆，得到另一个已经安装 DPDK 的虚拟机。
+    之后对该虚拟机进行克隆，得到另一个已经安装 DPDK 的虚拟机，如图 \ref{fig:vmclone} 所示。
+
+    \begin{figure}[H]
+        \centering
+        \begin{minipage}{0.45\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{ninjainstall}
+            \caption{ninja 安装}\label{fig:ninjainstall}
+        \end{minipage}
+        \begin{minipage}{0.3\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{vmclone}
+            \caption{克隆虚拟机}\label{fig:vmclone}
+        \end{minipage}
+    \end{figure}
+
+    \section{编译 l2fwd pktgen}
+
+    在 VM2 上编译 l2fwd，如图 \ref{fig:makel2fwd}。
+
+    \code[language=bash]{l2fwd.sh}
+
+    \begin{figure}[H]
+        \centering
+        \begin{minipage}{0.48\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{makel2fwd}
+            \caption{l2fwd 编译}\label{fig:makel2fwd}
+        \end{minipage}
+        \begin{minipage}{0.48\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{makepktgen}
+            \caption{pktgen 编译}\label{fig:makepktgen}
+        \end{minipage}
+    \end{figure}
+
+    在 VM1 上编译 pktgen，如图 \ref{fig:makepktgen}。
+
+    \code[language=bash]{pktgen.sh}
 
     \bibliography{ref}
 

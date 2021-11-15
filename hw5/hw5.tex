@@ -1,0 +1,24 @@
+%&"..\virtual"
+
+\begin{document}
+    \title{DPDK}
+    \maketitle
+    \tableofcontents
+    \section{要求}
+
+    DPDK performance test:
+
+    \begin{enumerate}[(1)]
+        \item Create two virtual machines on KVM.
+        \item Compile and install DPDK library on each virtual machine.
+        \item Compile and run DPDK sample application l2fwd on VM2, then compile and run pktgen-dpdk on VM1.  pkgen-dpdk will record the size of the packages VM1 sends and the amount of packages received from VM2,  while l2fwd just send back the packages it received from VM1.
+        \item Evaluate DPDK's performance of L2 forwarding.
+    \end{enumerate}
+
+    \section{编译安装 DPDK}
+
+    按照官方文档\cite{dpdk}安装 DPDK，
+
+    \bibliography{ref}
+
+\end{document}

@@ -11,11 +11,15 @@
         \item Create a QEMU KVM virtual machine using hugepages on the host.
      
         \item Create another QEMU KVM VM without hugepages.
+        
+        \item In both VMs allocate and use hugepages or not.
      
         \item Run memory instensive benchmark (e.g. sysbench memory test) on two VMs and record the performance.
      
         \item Compare the result and try to give some explanation.
     \end{enumerate}
+
+    Note: If the OS supports transparent huge page, disable it when you do the tests.
 
     \section{配置大内存页}
 
@@ -33,6 +37,17 @@
             \includegraphics[width=\linewidth]{meminfo}
             \caption{显示配置}\label{fig:meminfo}
         \end{minipage}
+    \end{figure}
+
+    接着按照提示，先关闭透明大页。Transparent HugePages是在运行时动态分配内存的，而标准的HugePages是在系统启动时预先分配内存，并在系统运行时不再改变。
+    因为Transparent HugePages是在运行时动态分配内存的，所以会带来在运行时内存分配延误。\cite{THP}
+
+    \code[language=bash]{disableTHP.sh}
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\linewidth]{disableTHP}
+        \caption{关闭透明大页}\label{fig:disableTHP}
     \end{figure}
 
     \section{创建对照虚拟机}

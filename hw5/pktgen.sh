@@ -4,3 +4,5 @@ cd pktgen-dpdk
 export RTE_SDK=~/dpdk-21.08
 export RTE_TARGET=x86_64-native-linuxapp-gcc
 make
+# copy to the detectable directory
+cp ./usr/local/bin/pktgen /usr/local/bin/pktgen

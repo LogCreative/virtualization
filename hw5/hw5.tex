@@ -139,9 +139,15 @@
 
     如图 \ref{fig:8000} 所示，在瞬时发包数为 8000 时还是不丢包的。而如图 \ref{fig:10000} 所示，在瞬时发包数为 10000 时丢了一部分包（15\%），也就是性能瓶颈大概在 8500 个包左右，性能还是很可观的，约等于几千个程序同时服务。
 
-    于此形成对照的是使用下面的脚本（使用原生的 pktgen\cite{pktgen}），10000 发包数丢失 40\% 左右的包。
+    于此形成对照的是使用下面的脚本（使用原生的 pktgen\cite{pktgen}），10000 发包数丢失 40\% 左右的包，如图 \ref{fig:compare} 所示。
 
     \code[language=bash]{comparetest.sh}
+    
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\linewidth]{compare}
+        \caption{对照实验}\label{fig:compare}
+    \end{figure}
 
     所以 DPDK 运行在操作系统的 User Space，利用自身提供的数据面库进行收发包处理，绕过了 Linux 内核态协议栈\cite{dpdkinfo}，可以大幅提高包的转发效率。
 
